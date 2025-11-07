@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  cafe-totem-frontend:
+    container_name: cafe-totem-frontend
+    build: .
+    ports:
+      - "8090:80" # ✅ sem conflito
+    restart: unless-stopped
