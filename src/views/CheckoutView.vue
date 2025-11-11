@@ -20,6 +20,11 @@
         />
       </div>
 
+      <!-- Exibe o valor total -->
+      <div class="mb-6 text-lg font-semibold text-gray-800 text-center">
+        Total: R$ {{ total.toFixed(2).replace('.', ',') }}
+      </div>
+
       <button
         @click="enviarPedido"
         :disabled="isLoading"
@@ -43,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 import { useProductsStore } from "../stores/products";
 import axios from "axios";
 import { useRouter } from "vue-router";
@@ -55,8 +60,15 @@ const clienteNome = ref("");
 const isLoading = ref(false);
 const mensagem = ref("");
 
+// 🧮 Calcula o total do pedido (somatório dos itens)
+const total = computed(() =>
+  productsStore.cart.reduce(
+    (acc, item) => acc + item.preco * (item.quantidade || 1),
+    0
+  )
+);
+
 const enviarPedido = async () => {
-  
   if (!clienteNome.value.trim()) {
     mensagem.value = "Por favor, informe o nome do cliente.";
     return;
@@ -70,17 +82,15 @@ const enviarPedido = async () => {
   try {
     isLoading.value = true;
 
-    console.log('passei aqui 3');
-
     await axios.post("http://192.168.15.22:8050/api/pedidos", {
       cliente_nome: clienteNome.value,
       itens: productsStore.cart,
+      valor_total: total.value, // 🆕 envia o valor total para o backend
     });
 
     mensagem.value = "✅ Pedido enviado com sucesso!";
     productsStore.clearCart();
 
-    // Redireciona após alguns segundos
     setTimeout(() => router.push("/"), 2000);
   } catch (error) {
     console.error(error);
