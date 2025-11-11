@@ -27,6 +27,14 @@
               >
                 🍳 Cozinha
               </RouterLink>
+
+              <RouterLink
+                to="/pedidos"
+                class="text-white text-lg font-semibold px-5 py-2 rounded-lg hover:bg-cafe-600 transition-colors"
+                active-class="bg-cafe-700"
+              >
+                🍳 Pedidos
+              </RouterLink>
             </nav>
           </div>
 

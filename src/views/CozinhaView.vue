@@ -114,7 +114,7 @@ const unlockSound = async () => {
  */
 const fetchPedidos = async () => {
   try {
-    const response = await axios.get("http://192.168.15.12:8050/api/pedidos");
+    const response = await axios.get("http://192.168.15.22:8050/api/pedidos");
     const data = response.data || [];
 
     // Detecta novos ids
@@ -155,7 +155,7 @@ onUnmounted(() => {
  */
 const marcarComoPreparado = async (id) => {
   try {
-    await axios.post(`http://192.168.15.12:8050/api/pedidos/${id}/preparado`);
+    await axios.post(`http://192.168.15.22:8050/api/pedidos/${id}/preparado`);
     // Remover do seenIds para que, se o mesmo id reaparecer, seja tratado como novo
     seenIds.delete(id);
     // Recarrega

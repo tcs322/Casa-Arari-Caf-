@@ -18,7 +18,7 @@ export const useProductsStore = defineStore("products", () => {
       isLoading.value = true;
 
       const response = await axios.get(
-        "http://192.168.15.12:8050/api/produtos/cafeteria"
+        "http://192.168.15.22:8050/api/produtos/cafeteria"
       );
 
       // Mapeia o formato vindo da API para o formato usado no app

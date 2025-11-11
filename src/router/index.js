@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import ProductsView from "../views/ProductsView.vue";
 import CheckoutView from "../views/CheckoutView.vue";
 import CozinhaView from "../views/CozinhaView.vue";
+import PedidosTodosView from "../views/PedidosTodosView.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/cozinha",
     name: "cozinha",
     component: CozinhaView,
+  },
+  {
+    path: "/pedidos", // 🆕 nova rota
+    name: "pedidos-todos",
+    component: PedidosTodosView,
   },
 ];
 

@@ -56,6 +56,7 @@ const isLoading = ref(false);
 const mensagem = ref("");
 
 const enviarPedido = async () => {
+  
   if (!clienteNome.value.trim()) {
     mensagem.value = "Por favor, informe o nome do cliente.";
     return;
@@ -69,7 +70,9 @@ const enviarPedido = async () => {
   try {
     isLoading.value = true;
 
-    await axios.post("http://192.168.15.12:8050/api/pedidos", {
+    console.log('passei aqui 3');
+
+    await axios.post("http://192.168.15.22:8050/api/pedidos", {
       cliente_nome: clienteNome.value,
       itens: productsStore.cart,
     });
