@@ -63,7 +63,7 @@ const mensagem = ref("");
 // 🧮 Calcula o total do pedido (somatório dos itens)
 const total = computed(() =>
   productsStore.cart.reduce(
-    (acc, item) => acc + item.preco * (item.quantidade || 1),
+    (acc, item) => acc + item.preco * (item.quantity || item.quantidade || 1),
     0
   )
 );
