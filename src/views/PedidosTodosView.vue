@@ -1,7 +1,9 @@
 <template>
   <div class="min-h-screen bg-gray-100 p-6">
     <!-- Cabeçalho -->
-    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+    <div
+      class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4"
+    >
       <h1 class="text-3xl font-bold text-cafe-600">Todos os Pedidos</h1>
 
       <!-- Filtros -->
@@ -31,16 +33,23 @@
       <div class="bg-white rounded-lg shadow px-4 py-2 text-sm text-gray-700">
         <strong>{{ totalPedidos }}</strong> total
       </div>
-      <div class="bg-yellow-100 text-yellow-800 rounded-lg shadow px-4 py-2 text-sm">
+      <div
+        class="bg-yellow-100 text-yellow-800 rounded-lg shadow px-4 py-2 text-sm"
+      >
         <strong>{{ totalPendentes }}</strong> pendentes
       </div>
-      <div class="bg-green-100 text-green-800 rounded-lg shadow px-4 py-2 text-sm">
+      <div
+        class="bg-green-100 text-green-800 rounded-lg shadow px-4 py-2 text-sm"
+      >
         <strong>{{ totalPreparados }}</strong> preparados
       </div>
     </div>
 
     <!-- Lista -->
-    <div v-if="pedidosFiltradosOrdenados.length === 0" class="text-center text-gray-500 mt-10">
+    <div
+      v-if="pedidosFiltradosOrdenados.length === 0"
+      class="text-center text-gray-500 mt-10"
+    >
       Nenhum pedido encontrado ☕
     </div>
 
@@ -60,7 +69,7 @@
               ? 'bg-yellow-100 text-yellow-700'
               : pedido.status === 'preparado'
               ? 'bg-green-100 text-green-700'
-              : 'bg-gray-100 text-gray-700'
+              : 'bg-gray-100 text-gray-700',
           ]"
         >
           {{ pedido.status }}
@@ -70,7 +79,7 @@
       <p class="font-medium text-gray-700 mb-2">
         Cliente:
         <span class="text-cafe-600">
-          {{ pedido.cliente_nome || '—' }}
+          {{ pedido.cliente_nome || "—" }}
         </span>
       </p>
 
@@ -80,7 +89,7 @@
           :key="item.id"
           class="text-gray-700 text-sm"
         >
-          {{ item.nome }} — <strong>{{ item.quantity }}x</strong>
+          {{ item.nome }} — <strong>{{ item.quantidade }}x</strong>
         </li>
       </ul>
 
@@ -100,7 +109,10 @@
     </div>
 
     <!-- Paginação -->
-    <div v-if="totalPaginas > 1" class="flex justify-center items-center gap-3 mt-6">
+    <div
+      v-if="totalPaginas > 1"
+      class="flex justify-center items-center gap-3 mt-6"
+    >
       <button
         @click="paginaAtual--"
         :disabled="paginaAtual === 1"
@@ -141,7 +153,9 @@ const itensPorPagina = 10;
  */
 const fetchTodosPedidos = async () => {
   try {
-    const response = await axios.get("http://192.168.15.22:8050/api/pedidos/todos");
+    const response = await axios.get(
+      "http://192.168.15.22:8050/api/pedidos/todos"
+    );
     pedidos.value = response.data || [];
   } catch (error) {
     console.error("Erro ao buscar todos os pedidos:", error);
