@@ -3,6 +3,7 @@ import ProductsView from "../views/ProductsView.vue";
 import CheckoutView from "../views/CheckoutView.vue";
 import CozinhaView from "../views/CozinhaView.vue";
 import PedidosTodosView from "../views/PedidosTodosView.vue";
+import UpdatePedidoView from "../views/UpdatePedidoView.vue";
 
 const routes = [
   {
@@ -24,6 +25,11 @@ const routes = [
     path: "/pedidos", // 🆕 nova rota
     name: "pedidos-todos",
     component: PedidosTodosView,
+  },
+  {
+    path: "/pedidos/:id/editar",
+    name: "editar-pedido",
+    component: UpdatePedidoView,
   },
 ];
 

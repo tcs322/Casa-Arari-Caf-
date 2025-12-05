@@ -106,6 +106,16 @@
           R$ {{ Number(pedido.valor_total).toFixed(2) }}
         </span>
       </p>
+
+      <!-- Botão para editar pedido -->
+      <div class="mt-4 flex justify-end">
+        <router-link
+          :to="`/pedidos/${pedido.id}/editar`"
+          class="px-3 py-2 bg-cafe-500 text-white rounded-lg hover:bg-cafe-600 text-sm"
+        >
+          Editar Pedido
+        </router-link>
+      </div>
     </div>
 
     <!-- Paginação -->
@@ -154,7 +164,7 @@ const itensPorPagina = 10;
 const fetchTodosPedidos = async () => {
   try {
     const response = await axios.get(
-      "http://192.168.15.22:8050/api/pedidos/todos"
+      "http://192.168.15.12:8050/api/pedidos/todos"
     );
     pedidos.value = response.data || [];
   } catch (error) {

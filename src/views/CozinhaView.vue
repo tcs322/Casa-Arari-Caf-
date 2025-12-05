@@ -45,7 +45,7 @@
           :key="item.id"
           class="text-gray-700 text-sm"
         >
-          {{ item.nome }} — <strong>{{ item.quantity }}x</strong>
+          {{ item.nome }} — <strong>{{ item.quantidade }}x</strong>
         </li>
       </ul>
 
