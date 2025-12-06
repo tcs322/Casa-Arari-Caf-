@@ -164,7 +164,7 @@ const itensPorPagina = 10;
 const fetchTodosPedidos = async () => {
   try {
     const response = await axios.get(
-      "http://192.168.15.12:8050/api/pedidos/todos"
+      "http://192.168.15.22:8050/api/pedidos/todos"
     );
     pedidos.value = response.data || [];
   } catch (error) {
