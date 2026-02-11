@@ -103,8 +103,15 @@ const carregarPedido = async () => {
  * Diminui a quantidade do item
  */
 const diminuirItem = (item) => {
+  // diminui quantidade total
   item.quantidade -= 1;
 
+  // diminui também a quantidade pendente (se ainda existir pendência)
+  if (item.quantidade_pendente > 0) {
+    item.quantidade_pendente -= 1;
+  }
+
+  // se zerou, remove o item do carrinho
   if (item.quantidade <= 0) {
     itens.value = itens.value.filter((i) => i.id !== item.id);
   }

@@ -219,6 +219,7 @@ const enviarPedido = async () => {
       id: item.id,
       nome: item.nome,
       preco: item.preco,
+      quantidade_pendente: item.quantity,
       quantidade: item.quantity, // 🔥 normaliza
     }));
 

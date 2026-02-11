@@ -45,7 +45,8 @@
           :key="item.id"
           class="text-gray-700 text-sm"
         >
-          {{ item.nome }} — <strong>{{ item.quantidade }}x</strong>
+          {{ item.nome }} — <strong>{{ item.quantidade }}x</strong> —
+          <strong>{{ item.quantidade_pendente }} Pendentes</strong>
         </li>
       </ul>
 
@@ -114,7 +115,7 @@ const unlockSound = async () => {
  */
 const fetchPedidos = async () => {
   try {
-    const response = await axios.get("http://192.168.15.22:8050/api/pedidos");
+    const response = await axios.get("http://192.168.15.11:8050/api/pedidos");
     const data = response.data || [];
 
     // Detecta novos ids
