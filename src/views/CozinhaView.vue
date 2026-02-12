@@ -45,8 +45,14 @@
           :key="item.id"
           class="text-gray-700 text-sm"
         >
-          {{ item.nome }} — <strong>{{ item.quantidade }}x</strong> —
-          <strong>{{ item.quantidade_pendente }} Pendentes</strong>
+          <div>
+            {{ item.nome }} — <strong>{{ item.quantidade }}x</strong>
+            <div
+              class="bg-yellow-100 text-yellow-800 rounded-lg shadow px-4 py-2 text-sm"
+            >
+              <strong>{{ item.quantidade_pendente }} Pendentes</strong>
+            </div>
+          </div>
         </li>
       </ul>
 
