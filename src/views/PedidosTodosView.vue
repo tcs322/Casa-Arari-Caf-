@@ -65,6 +65,18 @@
         <span
           :class="[
             'px-3 py-1 rounded-full text-sm font-medium',
+            pedido.status_pagamento === 'Não pago'
+              ? 'bg-yellow-100 text-yellow-700'
+              : pedido.status_pagamento === 'Pago'
+              ? 'bg-green-100 text-green-700'
+              : 'bg-gray-100 text-gray-700',
+          ]"
+        >
+          {{ pedido.status_pagamento }}
+        </span>
+        <span
+          :class="[
+            'px-3 py-1 rounded-full text-sm font-medium',
             pedido.status === 'pendente'
               ? 'bg-yellow-100 text-yellow-700'
               : pedido.status === 'preparado'
@@ -108,6 +120,15 @@
       </p>
 
       <!-- Botão para editar pedido -->
+      <div class="mt-4 flex justify-end">
+        <button
+          @click="marcarComoPago(pedido.id)"
+          class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        >
+          Marcar como pago
+        </button>
+      </div>
+
       <div class="mt-4 flex justify-end">
         <router-link
           :to="`/pedidos/${pedido.id}/editar`"
@@ -242,6 +263,16 @@ onMounted(() => {
 onUnmounted(() => {
   if (intervalId) clearInterval(intervalId);
 });
+
+const marcarComoPago = async (id) => {
+  try {
+    await axios.post(`http://192.168.15.22:8050/api/pedidos/${id}/pago`);
+    // Recarrega
+    await fetchTodosPedidos();
+  } catch (error) {
+    console.error("Erro ao atualizar pedido:", error);
+  }
+};
 </script>
 
 <style scoped>
