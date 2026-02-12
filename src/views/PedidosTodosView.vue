@@ -127,6 +127,13 @@
         >
           Marcar como pago
         </button>
+
+        <button
+          @click="imprimirPedido(pedido.id)"
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          🖨️ Imprimir
+        </button>
       </div>
 
       <div class="mt-4 flex justify-end">
@@ -271,6 +278,17 @@ const marcarComoPago = async (id) => {
     await fetchTodosPedidos();
   } catch (error) {
     console.error("Erro ao atualizar pedido:", error);
+  }
+};
+
+const imprimirPedido = async (id) => {
+  try {
+    await axios.post(`http://192.168.15.22:8050/api/pedidos/${id}/parcial`);
+
+    alert("Pedido enviado para impressão!");
+  } catch (error) {
+    console.error("Erro ao imprimir pedido:", error);
+    alert("Erro ao tentar imprimir.");
   }
 };
 </script>
